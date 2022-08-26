@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 import NavigationBar from "./components/navigation-bar/NavigationBar";
+import Header from "./components/header/Header";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <FontAwesomeIcon icon={faCoffee} /> is hot.
       </div> */}
       <NavigationBar></NavigationBar>
+      <Header></Header>
     </Fragment>
   );
 }
