@@ -54,7 +54,13 @@ const Header = () => {
           <Col>
             <Row>
               <Col>
-                <FilterSelect />
+                <FilterSelect>
+                  <option>Filter by</option>
+                  <option value="title">Title</option>
+                  <option value="message">Message</option>
+                  <option value="sent-by">Sent by</option>
+                  <option value="sent-through">Sent Through</option>
+                </FilterSelect>
               </Col>
               <Col>
                 <SearchBox />

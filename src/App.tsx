@@ -9,6 +9,7 @@ import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 import NavigationBar from "./components/navigation-bar/NavigationBar";
 import Header from "./components/header/Header";
+import DataGrid from "./components/data-grid/DataGrid";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       </div> */}
       <NavigationBar></NavigationBar>
       <Header></Header>
+      <DataGrid></DataGrid>
     </Fragment>
   );
 }
