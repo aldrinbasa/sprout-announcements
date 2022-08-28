@@ -41,3 +41,7 @@ th {
     white-space: nowrap;
     padding: 10px;
 }
+
+.navigator td {
+    border: none;
+}

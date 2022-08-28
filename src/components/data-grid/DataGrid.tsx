@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+
 import "./DataGrid.css";
 import ANNOUNCEMENTS_DATA from "../../interface/AnnouncementInterface";
 import { AnnouncementInterface } from "../../interface/AnnouncementInterface";
@@ -12,7 +13,10 @@ import {
   faCaretLeft,
   faForwardStep,
   faCaretRight,
+  faBookmark,
+  faMobileScreen,
 } from "@fortawesome/free-solid-svg-icons";
+import moment from "moment";
 
 const DataGrid = (props: any) => {
   let renderShownData = (data: AnnouncementInterface[]) => {
@@ -22,13 +26,43 @@ const DataGrid = (props: any) => {
           <td>{announcement.title}</td>
           <td>{announcement.message}</td>
           <td>{announcement.sentBy}</td>
-          <td>{announcement.sentThrough}</td>
-          <td>{announcement.dateCreated.toDateString()}</td>
-          <td>{announcement.startDate.toDateString()}</td>
-          <td>{announcement.endDate.toDateString()}</td>
+          <td>{renderSentThrough(announcement.sentThrough)}</td>
+          <td>{renderDate(announcement.dateCreated)}</td>
+          <td>
+            {renderDate(announcement.startDate)}
+            {renderTime(announcement.startDate)}
+          </td>
+          <td>
+            {renderDate(announcement.endDate)}
+            {renderTime(announcement.endDate)}
+          </td>
         </tr>
       );
     });
+  };
+
+  let renderSentThrough = (sentThroughs: String[]) => {
+    return sentThroughs.map((sentThrough, key) => {
+      switch (sentThrough) {
+        case "web":
+          return <FontAwesomeIcon key={key} icon={faBookmark} />;
+          break;
+        case "phone":
+          return <FontAwesomeIcon key={key} icon={faMobileScreen} />;
+          break;
+        default:
+          return <div></div>;
+          break;
+      }
+    });
+  };
+
+  let renderDate = (date: Date) => {
+    return <div>{moment(date).format("MM/DD/YYYY")}</div>;
+  };
+
+  const renderTime = (date: Date) => {
+    return <div>{moment(date).format("hh:mm a")}</div>;
   };
 
   const [shownData, setShownData] = useState(ANNOUNCEMENTS_DATA);
@@ -49,7 +83,7 @@ const DataGrid = (props: any) => {
             </tr>
           </thead>
           <tbody>{renderShownData(shownData)}</tbody>
-          <thead>
+          <thead className="navigator">
             <tr>
               <td className="page-number-filter">
                 <span className="">Items per page</span>
