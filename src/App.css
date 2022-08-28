@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url(https://www.dafontfree.net/embed/cnViaWstYm9sZCZkYXRhLzE5L3IvOTI0MzQvUnViaWstQm9sZC50dGY);
+
+:root {
+    --dark-green: #06422e;
+    --light-green: #17AD49;
+    --orange: #FF7F00;
+    --border-main: 1px solid rgba(6, 66, 46, .2);
+}
+
+* {
+    font-family: "rubik", sans-serif;
+}
+
+tr {
+    color: var(--dark-green)
+}

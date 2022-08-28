@@ -1,3 +1,8 @@
-.test {
-    /* background-color: red; */
+.header {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: var(--dark-green);
 }

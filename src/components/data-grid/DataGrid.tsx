@@ -15,6 +15,7 @@ import {
   faCaretRight,
   faBookmark,
   faMobileScreen,
+  faCircleInfo,
 } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 
@@ -26,11 +27,17 @@ const DataGrid = (props: any) => {
           <td>{announcement.title}</td>
           <td>{announcement.message}</td>
           <td>{announcement.sentBy}</td>
-          <td>{renderSentThrough(announcement.sentThrough)}</td>
+          <td>
+            <div className="sent-through">
+              {renderSentThrough(announcement.sentThrough)}
+            </div>
+          </td>
           <td>{renderDate(announcement.dateCreated)}</td>
           <td>
-            {renderDate(announcement.startDate)}
-            {renderTime(announcement.startDate)}
+            <div className="date-created">
+              {renderDate(announcement.startDate)}
+              {renderTime(announcement.startDate)}
+            </div>
           </td>
           <td>
             {renderDate(announcement.endDate)}
@@ -41,7 +48,7 @@ const DataGrid = (props: any) => {
     });
   };
 
-  let renderSentThrough = (sentThroughs: String[]) => {
+  const renderSentThrough = (sentThroughs: String[]) => {
     return sentThroughs.map((sentThrough, key) => {
       switch (sentThrough) {
         case "web":
@@ -62,7 +69,7 @@ const DataGrid = (props: any) => {
   };
 
   const renderTime = (date: Date) => {
-    return <div>{moment(date).format("hh:mm a")}</div>;
+    return <div className="time">{moment(date).format("hh:mm a")}</div>;
   };
 
   const [shownData, setShownData] = useState(ANNOUNCEMENTS_DATA);
@@ -70,29 +77,35 @@ const DataGrid = (props: any) => {
   return (
     <Fragment>
       <Container>
-        <Table align="center" striped bordered hover size="sm">
+        <Table className="table" align="center" size="lg" hover>
           <thead>
-            <tr>
+            <tr className="table-header">
               <th>TITLE</th>
               <th>MESSAGE</th>
               <th>SENT BY</th>
-              <th>SENT THROUGH</th>
+              <th>
+                SENT THROUGH{" "}
+                <FontAwesomeIcon
+                  className="more-information"
+                  icon={faCircleInfo}
+                />
+              </th>
               <th>DATE CREATED</th>
               <th>START DATE</th>
               <th>END DATE</th>
             </tr>
           </thead>
           <tbody>{renderShownData(shownData)}</tbody>
-          <thead className="navigator">
-            <tr>
-              <td className="page-number-filter">
-                <span className="">Items per page</span>
-                <FilterSelect className="items-per-page">
+          <thead>
+            <tr className="footer">
+              <td className="navigator">
+                <span>Items per page </span>
+                <select>
                   <option value={5}>5</option>
                   <option value={10}>10</option>
                   <option value={20}>20</option>
                   <option value={50}>50</option>
-                </FilterSelect>
+                </select>
               </td>
               <td colSpan={5}>
                 <table className="filter">
@@ -125,7 +138,7 @@ const DataGrid = (props: any) => {
                   </tr>
                 </table>
               </td>
-              <td>
+              <td className="page-number">
                 <span>Showing 1-10 of 1</span>
               </td>
             </tr>
